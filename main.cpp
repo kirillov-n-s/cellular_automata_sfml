@@ -4,7 +4,7 @@
 int main()
 {
 	auto aut = new automaton(160, 90);
-	application app(aut, "Game Of Life");
+	application app(aut, "", 20u);
 	app.run();
 	delete aut;
 }

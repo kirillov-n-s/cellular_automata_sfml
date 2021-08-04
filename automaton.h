@@ -7,14 +7,17 @@ public:
 	enum type
 	{
 		life = 0,
-		formation = 1,
-		insectoid = 2
+		continents = 1,
+		islands = 2,
+		insectoid = 3,
+		desolation = 4
 	};
 
 private:
 	bool* _grid;
 	type _type;
-	int _param; //insectoid only
+	int _param; //insectoid & desolation only
+	uint32_t _iteration = 0;
 
 	uint32_t _width;
 	uint32_t _height;
@@ -24,7 +27,7 @@ private:
 	bool* get_neighbors(bool* buffer, uint32_t x, uint32_t y);
 
 public:
-	automaton(uint32_t width, uint32_t height, type type = life, int param = 4);
+	automaton(uint32_t width, uint32_t height, enum type type = life, int param = 4);
 	~automaton();
 
 	void operate();
@@ -37,5 +40,7 @@ public:
 
 	uint32_t width() const;
 	uint32_t height() const;
+	type type() const;
+	uint32_t iteration() const;
 };
 

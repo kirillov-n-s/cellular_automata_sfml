@@ -23,7 +23,7 @@ bool* automaton::get_neighbors(bool* buffer, uint32_t x, uint32_t y)
 	return res;
 }
 
-automaton::automaton(uint32_t width, uint32_t height, type type, int param)
+automaton::automaton(uint32_t width, uint32_t height, enum type type, int param)
 	: _width(width), _height(height), _size(width * height), _type(type), _param(param)
 {
 	_grid = new bool[_size];
@@ -54,11 +54,17 @@ void automaton::operate()
 			case life:
 				state = get(buffer, x, y) ? count == 2 || count == 3 : count == 3;
 				break;
-			case formation:
+			case continents:
 				state = count <= 4;
+				break;
+			case islands:
+				state = count <= 6;
 				break;
 			case insectoid:
 				state = count > _param || count < 2;
+				break;
+			case desolation:
+				state = count > 5;
 				break;
 			}
 			set(x, y, state);
@@ -66,15 +72,29 @@ void automaton::operate()
 		}
 	}
 	delete[] buffer;
+	_iteration++;
 }
 
 void automaton::populate()
 {
 	std::random_device dev;
 	std::mt19937 eng(dev());
-	std::uniform_int_distribution<int> distrib(0, 1);
-	for (int x = 0; x < _width; x++)
-		for (int y = 0; y < _height; y++)
+
+	int a = 0;
+	int b = 1;
+	switch (_type)
+	{
+	case automaton::islands:
+		b = 4;
+		break;
+	case automaton::desolation:
+		b = _param;
+		break;
+	}
+
+	std::uniform_int_distribution<int> distrib(a, b);
+	for (int y = 0; y < _height; y++)
+		for (int x = 0; x < _width; x++)
 			set(x, y, (bool)std::max(distrib(eng), 0));
 }
 
@@ -108,4 +128,14 @@ uint32_t automaton::width() const
 uint32_t automaton::height() const
 {
 	return _height;
+}
+
+enum automaton::type automaton::type() const
+{
+	return _type;
+}
+
+uint32_t automaton::iteration() const
+{
+	return _iteration;
 }
