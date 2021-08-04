@@ -3,15 +3,15 @@
 void application::scroll_light()
 {
 	_light++;
-	if (_light > 6u)
-		_light = 0u;
+	if (_light > 6)
+		_light = 0;
 }
 
 void application::scroll_dark()
 {
 	_dark++;
-	if (_dark > 4u)
-		_dark = 0u;
+	if (_dark > 5)
+		_dark = 0;
 }
 
 void application::draw(uint32_t x, uint32_t y)
@@ -60,6 +60,9 @@ void application::draw(uint32_t x, uint32_t y)
 		break;
 	case 4:
 		dark = { 0x4a, 0x39, 0x33 };
+		break;
+	case 5:
+		dark = { 0x08, 0x20, 0x32 };
 		break;
 	}
 
@@ -157,6 +160,7 @@ application::application(automaton* automaton, const std::string& title, uint32_
 			break;
 		case automaton::insectoid:
 			_title = "Insectoid";
+			break;
 		case automaton::desolation:
 			_title = "Desolation";
 			break;

@@ -3,8 +3,8 @@
 
 int main()
 {
-	auto aut = new automaton(160, 90);
-	application app(aut, "", 20u);
+	auto aut = new automaton(320, 180);
+	application app(aut, "", 10);
 	app.run();
 	delete aut;
 }
