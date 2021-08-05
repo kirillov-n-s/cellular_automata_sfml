@@ -25,9 +25,10 @@ private:
 
 	bool get(bool* buffer, uint32_t x, uint32_t y) const;
 	bool* get_neighbors(bool* buffer, uint32_t x, uint32_t y);
+	void set(uint32_t x, uint32_t y, bool value);
 
 public:
-	automaton(uint32_t width, uint32_t height, enum type type = life, int param = 4);
+	automaton(uint32_t width, uint32_t height, enum type type = life, int param = 8);
 	~automaton();
 
 	void operate();
@@ -35,8 +36,8 @@ public:
 	void clear();
 
 	bool get(uint32_t x, uint32_t y) const;
-	void set(uint32_t x, uint32_t y, bool value);
 	void flip(uint32_t x, uint32_t y);
+	void flip_all();
 
 	uint32_t width() const;
 	uint32_t height() const;
@@ -44,3 +45,14 @@ public:
 	uint32_t iteration() const;
 };
 
+/*
+desolation landscape generation algorithm (for param = 8):
+1. 20 iters
+2. flip all
+3. 5 iters
+4. flip all
+5. 10 iters
+6. flip all
+7. 5 iters
+8. flip all
+*/

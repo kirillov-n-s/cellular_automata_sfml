@@ -23,6 +23,11 @@ bool* automaton::get_neighbors(bool* buffer, uint32_t x, uint32_t y)
 	return res;
 }
 
+void automaton::set(uint32_t x, uint32_t y, bool value)
+{
+	_grid[(y * _width + x) % _size] = value;
+}
+
 automaton::automaton(uint32_t width, uint32_t height, enum type type, int param)
 	: _width(width), _height(height), _size(width * height), _type(type), _param(param)
 {
@@ -96,13 +101,15 @@ void automaton::populate()
 	for (int y = 0; y < _height; y++)
 		for (int x = 0; x < _width; x++)
 			set(x, y, (bool)std::max(distrib(eng), 0));
+	_iteration = 0;
 }
 
 void automaton::clear()
 {
 	for (int x = 0; x < _width; x++)
 		for (int y = 0; y < _height; y++)
-			set(x, y, false );
+			set(x, y, false);
+	_iteration = 0;
 }
 
 bool automaton::get(uint32_t x, uint32_t y) const
@@ -110,14 +117,16 @@ bool automaton::get(uint32_t x, uint32_t y) const
 	return _grid[(y * _width + x) % _size];
 }
 
-void automaton::set(uint32_t x, uint32_t y, bool value)
-{
-	_grid[(y * _width + x) % _size] = value;
-}
-
 void automaton::flip(uint32_t x, uint32_t y)
 {
 	_grid[(y * _width + x) % _size] ^= true;
+}
+
+void automaton::flip_all()
+{
+	for (int y = 0; y < _height; y++)
+		for (int x = 0; x < _width; x++)
+			flip(x, y);
 }
 
 uint32_t automaton::width() const

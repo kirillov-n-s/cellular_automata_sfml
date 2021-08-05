@@ -3,7 +3,7 @@
 void application::scroll_light()
 {
 	_light++;
-	if (_light > 6)
+	if (_light > 7)
 		_light = 0;
 }
 
@@ -41,6 +41,9 @@ void application::draw(uint32_t x, uint32_t y)
 		break;
 	case 6:
 		light = { 0xec, 0xa3, 0xf5 };
+		break;
+	case 7:
+		light = { 0xd7, 0x97, 0x71 };
 		break;
 	}
 
@@ -94,6 +97,9 @@ void application::handle_events()
 			case sf::Keyboard::RControl:
 				if (_paused)
 					_automaton->operate();
+				break;
+			case sf::Keyboard::LControl:
+				_automaton->flip_all();
 				break;
 			case sf::Keyboard::LAlt:
 				scroll_light();
