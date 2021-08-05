@@ -124,9 +124,8 @@ void automaton::flip(uint32_t x, uint32_t y)
 
 void automaton::flip_all()
 {
-	for (int y = 0; y < _height; y++)
-		for (int x = 0; x < _width; x++)
-			flip(x, y);
+	for (int i = 0; i < _size; i++)
+		_grid[i] ^= true;
 }
 
 uint32_t automaton::width() const

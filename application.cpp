@@ -150,7 +150,7 @@ application::application(automaton* automaton, const std::string& title, uint32_
 
 	_cell = sf::RectangleShape({ (float)_cell_dim, (float)_cell_dim });
 	_cell.setOutlineColor(sf::Color::Black);
-	_cell.setOutlineThickness(-2.f);
+	_cell.setOutlineThickness(-1.f);
 
 	if (_title == "")
 		switch (_automaton->type())
