@@ -3,7 +3,7 @@
 
 int main()
 {
-	auto aut = new automaton(320, 180, automaton::desolation);
+	auto aut = new automaton(320, 180, automaton::terraforming);
 	application app(aut, "", 10);
 	app.run();
 	delete aut;

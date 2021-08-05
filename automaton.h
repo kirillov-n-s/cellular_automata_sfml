@@ -7,16 +7,16 @@ public:
 	enum type
 	{
 		life = 0,
-		continents = 1,
-		islands = 2,
+		islands = 1,
+		spots = 2,
 		insectoid = 3,
-		desolation = 4
+		terraforming = 4
 	};
 
 private:
 	bool* _grid;
 	type _type;
-	int _param; //insectoid & desolation only
+	int _param; //insectoid & terraforming only
 	uint32_t _iteration = 0;
 
 	uint32_t _width;
@@ -54,5 +54,5 @@ desolation landscape generation algorithm (for param = 8):
 5. 10 iters
 6. flip all
 7. 5 iters
-8. flip all
+8. optional flip all 
 */

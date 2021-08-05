@@ -59,16 +59,16 @@ void automaton::operate()
 			case life:
 				state = get(buffer, x, y) ? count == 2 || count == 3 : count == 3;
 				break;
-			case continents:
+			case islands:
 				state = count <= 4;
 				break;
-			case islands:
+			case spots:
 				state = count <= 6;
 				break;
 			case insectoid:
 				state = count > _param || count < 2;
 				break;
-			case desolation:
+			case terraforming:
 				state = count > 5;
 				break;
 			}
@@ -89,10 +89,10 @@ void automaton::populate()
 	int b = 1;
 	switch (_type)
 	{
-	case automaton::islands:
+	case automaton::spots:
 		b = 4;
 		break;
-	case automaton::desolation:
+	case automaton::terraforming:
 		b = _param;
 		break;
 	}

@@ -158,17 +158,17 @@ application::application(automaton* automaton, const std::string& title, uint32_
 		case automaton::life:
 			_title = "Conway's Game Of Life";
 			break;
-		case automaton::continents:
-			_title = "Continents (Formation pattern, neighbor limit: 4, 50% initial coverage)";
-			break;
 		case automaton::islands:
-			_title = "Islands (Formation pattern, neighbor limit: 6, 80% initial coverage)";
+			_title = "Islands (Formation pattern, neighbor limit: 4, 50% initial coverage)";
+			break;
+		case automaton::spots:
+			_title = "Spots (Formation pattern, neighbor limit: 6, 80% initial coverage)";
 			break;
 		case automaton::insectoid:
 			_title = "Insectoid";
 			break;
-		case automaton::desolation:
-			_title = "Desolation";
+		case automaton::terraforming:
+			_title = "Terraforming";
 			break;
 		}
 }
